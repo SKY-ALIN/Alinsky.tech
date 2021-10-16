@@ -12,6 +12,8 @@ import {
   Typography
 } from "@mui/material";
 
+import { ReactComponent as TikTokIcon } from './tiktok.svg'
+import { ReactComponent as VKIcon } from './vk.svg'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -99,20 +101,20 @@ function App() {
 
             <Box className={classes.block}>
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Social medias</Typography>
-              <MediaButton text="Instagram" icon={<InstagramIcon />} />
-              <MediaButton text="Twitter" icon={<TwitterIcon />} />
-              <MediaButton text="Facebook" icon={<FacebookIcon />} />
-              <MediaButton text="TikTok" icon={<></>} />
-              <MediaButton text="VK" icon={<></>} />
-              <MediaButton text="YouTube" icon={<YouTubeIcon />} />
-              <MediaButton text="GitHub" icon={<GitHubIcon />} />
-              <MediaButton text="LinkedIn" icon={<LinkedInIcon />} />
+              <MediaButton text="Instagram" icon={<InstagramIcon />} href="https://www.instagram.com/sky.alin/" />
+              <MediaButton text="Twitter" icon={<TwitterIcon />} href="https://twitter.com/AlinskyVladimir" />
+              <MediaButton text="Facebook" icon={<FacebookIcon />} href="https://www.facebook.com/vladimir.alinsky" />
+              <MediaButton text="TikTok" icon={<TikTokIcon fill="#ffa726" />} href="https://vm.tiktok.com/ZSJe8DYu6/" />
+              <MediaButton text="VK" icon={<VKIcon fill="#ffa726" />} href="https://vk.com/voavnix" />
+              <MediaButton text="YouTube" icon={<YouTubeIcon />} href="https://www.youtube.com/channel/UCR_YFCXQu5FW-wyZjuEzLjQ" />
+              <MediaButton text="GitHub" icon={<GitHubIcon />} href="https://github.com/SKY-ALIN" />
+              <MediaButton text="LinkedIn" icon={<LinkedInIcon />} href="https://www.linkedin.com/in/alinsky/" />
             </Box>
 
             <Box className={classes.block}>
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Ways to contact</Typography>
-              <MediaButton text="Telegram" icon={<TelegramIcon />} />
-              <MediaButton text="Mail" icon={<AlternateEmailIcon />} />
+              <MediaButton text="Telegram" icon={<TelegramIcon />} href="https://t.me/sky_alin" />
+              <MediaButton text="Mail" icon={<AlternateEmailIcon />} href="mailto:vladimir@alinsky.tech" />
             </Box>
           </Paper>
 
