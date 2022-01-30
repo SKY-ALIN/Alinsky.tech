@@ -127,6 +127,7 @@ function App() {
                 href="https://vm.tiktok.com/ZSJe8DYu6/"
               />
               <MediaButton text="Facebook" icon={<FacebookIcon />} href="https://www.facebook.com/vladimir.alinsky" />
+              <MediaButton text="Channel" icon={<TelegramIcon />} href="https://t.me/alinsky_tech" />
             </Box>
 
             <Box className={classes.block}>
