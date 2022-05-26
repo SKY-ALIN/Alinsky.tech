@@ -7,19 +7,24 @@ import {
   Box,
   Button,
   Container,
-  Snackbar,
   Paper,
-  Typography
+  Typography,
+  Card,
+  CardHeader,
+  CardContent,
+  CardActions,
+  IconButton,
+  Divider,
+  ButtonGroup
 } from "@mui/material";
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
-import { ReactComponent as SignalIcon } from './signal.svg'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -41,7 +46,7 @@ const darkTheme = createTheme({
   }
 });
 
-const maxWidth = '600px';  // 768
+const maxWidth = '450px';
 
 const useStyles = makeStyles({
   root: {
@@ -52,7 +57,6 @@ const useStyles = makeStyles({
     maxWidth: maxWidth,
     minHeight: '100vh',
     alignItems: 'center',
-    textAlign: 'center',
     justifyContent: 'center',
     flexDirection: "column",
   },
@@ -61,23 +65,20 @@ const useStyles = makeStyles({
     position: "fixed",
     bottom: 0,
   },
+  paper: {
+    margin: "24px 16px",
+    padding: "24px 8px",
+  },
   block: {
     paddingTop: "16px"
   }
 })
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-  props,
-  ref,
-) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
 function MediaButton({text, icon, ...props}: {text: string, icon: JSX.Element, href?: string, onClick?: () => void}) {
   return (
     <Button
-      variant="outlined"
-      color="warning"
+      variant="text"
+      size="small"
       sx={{margin: "8px"}}
       startIcon={icon}
       {...props}
@@ -90,12 +91,9 @@ function MediaButton({text, icon, ...props}: {text: string, icon: JSX.Element, h
 function App() {
   const classes = useStyles();
 
-  const [openSignalAlert, setOpenSignalAlert] = React.useState(false);
-  const handleCloseSignalAlert = (event?: React.SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenSignalAlert(false);
+  const [expanded, setExpanded] = React.useState(false);
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
   };
 
   return (
@@ -103,64 +101,71 @@ function App() {
       <CssBaseline />
       <div className={classes.root}>
         <Container>
-          <Paper sx={{padding: "24px 8px"}}>
-            <Avatar
-              src={process.env.PUBLIC_URL + '/me.png'}
-              sx={{
-                marginLeft: "auto",
-                marginRight: "auto",
-                width: 96,
-                height: 96
-              }}
+
+          <Card sx={{ maxWidth: maxWidth }}>
+            <CardHeader
+              avatar={
+                <Avatar src={process.env.PUBLIC_URL + '/me.png'} />
+              }
+              title="Vladimir Alinsky"
+              subheader="Software Engineer"
+              action={
+                <ButtonGroup>
+                  <IconButton aria-label="GitHub" href="https://github.com/SKY-ALIN">
+                    <GitHubIcon />
+                  </IconButton>
+
+                  <IconButton aria-label="LinkedIn" href="https://www.linkedin.com/in/alinsky/">
+                    <LinkedInIcon />
+                  </IconButton>
+                </ButtonGroup>
+              }
             />
-            <Typography variant="h5" sx={{ fontWeight: 'light' }}>Vladimir Alinsky</Typography>
 
-            <Box className={classes.block}>
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Social medias</Typography>
-              <MediaButton text="Instagram" icon={<InstagramIcon />} href="https://www.instagram.com/sky.alin/" />
-              <MediaButton text="Twitter" icon={<TwitterIcon />} href="https://twitter.com/AlinskyVladimir" />
-              <MediaButton text="Channel" icon={<TelegramIcon />} href="https://t.me/alinsky_tech" />
-            </Box>
+            <CardContent>
+              <Typography sx={{ mb: 1.5 }}>
+                Hello! I'm a Dreamer focusing on high-load distributed systems.
+                This is my little personal website with open-source projects and media links.
+              </Typography>
+              <Typography sx={{ mb: 1.5 }}>
+                You are welcome.
+              </Typography>
 
-            <Box className={classes.block}>
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Professional</Typography>
-              <MediaButton text="LinkedIn" icon={<LinkedInIcon />} href="https://www.linkedin.com/in/alinsky/" />
-              <MediaButton text="GitHub" icon={<GitHubIcon />} href="https://github.com/SKY-ALIN" />
-            </Box>
+              <Divider><Typography color="text.secondary">Social Medias</Typography></Divider>
+              <Box sx={{textAlign: 'center'}}>
+                <MediaButton text="Instagram" icon={<InstagramIcon />} href="https://www.instagram.com/sky.alin/" />
+                <MediaButton text="Twitter" icon={<TwitterIcon />} href="https://twitter.com/AlinskyVladimir" />
+                <MediaButton text="Channel" icon={<TelegramIcon />} href="https://t.me/alinsky_tech" />
+              </Box>
+            </CardContent>
 
-            <Box className={classes.block}>
-              <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Ways to contact</Typography>
+            <CardActions disableSpacing>
+              <IconButton aria-label="Telegram" href="https://t.me/sky_alin">
+                <TelegramIcon />
+              </IconButton>
 
-              <MediaButton text="Telegram" icon={<TelegramIcon />} href="https://t.me/sky_alin" />
-              <MediaButton
-                text="Signal"
-                icon={<SignalIcon fill="#ffa726" width="1em" height="1em" />}
-                onClick={() => setOpenSignalAlert(true)}
-              />
-              <MediaButton text="Mail" icon={<AlternateEmailIcon />} href="mailto:vladimir@alinsky.tech" />
-            </Box>
-          </Paper>
+              <IconButton aria-label="Email" href="mailto:vladimir@alinsky.tech">
+                <AlternateEmailIcon />
+              </IconButton>
+
+              <Button
+                sx={{marginLeft: 'auto'}}
+                color="inherit"
+                onClick={handleExpandClick}
+                endIcon={<ExpandMoreIcon />}
+              >View Open Source</Button>
+            </CardActions>
+          </Card>
 
         </Container>
 
-        <Paper className={classes.footer} sx={{padding: "24px 16px"}}>
-          <Box sx={{maxWidth: maxWidth, marginRight: "auto", marginLeft: "auto"}}>
-            <Typography sx={{float: "left"}}>Personal webpage</Typography>
-            <Button variant="outlined" sx={{float: "right"}} disabled>Login</Button>
+        <Paper className={classes.footer} sx={{padding: "16px 16px"}}>
+          <Box sx={{maxWidth: maxWidth, marginRight: "auto", marginLeft: "auto", textAlign: 'center'}}>
+            <Typography variant="overline">Personal webpage. Copyright © 2022, Vladimir Alinsky</Typography>
           </Box>
         </Paper>
-      </div>
 
-      <Snackbar
-        open={openSignalAlert}
-        autoHideDuration={3500}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        onClose={handleCloseSignalAlert}
-      >
-        <Alert severity="warning" sx={{ width: '100%' }} onClose={handleCloseSignalAlert}>
-          Available upon personal request only. Request by Email or Telegram.
-        </Alert>
-      </Snackbar>
+      </div>
     </ThemeProvider>
   );
 }
