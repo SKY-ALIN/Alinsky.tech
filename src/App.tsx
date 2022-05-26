@@ -13,12 +13,9 @@ import {
 } from "@mui/material";
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
-import { ReactComponent as TikTokIcon } from './tiktok.svg'
-import { ReactComponent as VKIcon } from './vk.svg'
 import { ReactComponent as SignalIcon } from './signal.svg'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -44,13 +41,15 @@ const darkTheme = createTheme({
   }
 });
 
+const maxWidth = '600px';  // 768
+
 const useStyles = makeStyles({
   root: {
     marginRight: "auto",
     marginLeft: "auto",
     padding: "32px 0px 116px",  // 84 + 32 = 116
     display: 'flex',
-    maxWidth: '768px',
+    maxWidth: maxWidth,
     minHeight: '100vh',
     alignItems: 'center',
     textAlign: 'center',
@@ -120,13 +119,6 @@ function App() {
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Social medias</Typography>
               <MediaButton text="Instagram" icon={<InstagramIcon />} href="https://www.instagram.com/sky.alin/" />
               <MediaButton text="Twitter" icon={<TwitterIcon />} href="https://twitter.com/AlinskyVladimir" />
-              <MediaButton text="VK" icon={<VKIcon fill="#ffa726" />} href="https://vk.com/voavnix" />
-              <MediaButton
-                text="TikTok"
-                icon={<TikTokIcon fill="#ffa726" width="1em" height="1em" />}
-                href="https://vm.tiktok.com/ZSJe8DYu6/"
-              />
-              <MediaButton text="Facebook" icon={<FacebookIcon />} href="https://www.facebook.com/vladimir.alinsky" />
               <MediaButton text="Channel" icon={<TelegramIcon />} href="https://t.me/alinsky_tech" />
             </Box>
 
@@ -152,7 +144,7 @@ function App() {
         </Container>
 
         <Paper className={classes.footer} sx={{padding: "24px 16px"}}>
-          <Box sx={{maxWidth: '768px', marginRight: "auto", marginLeft: "auto"}}>
+          <Box sx={{maxWidth: maxWidth, marginRight: "auto", marginLeft: "auto"}}>
             <Typography sx={{float: "left"}}>Personal webpage</Typography>
             <Button variant="outlined" sx={{float: "right"}} disabled>Login</Button>
           </Box>
@@ -161,12 +153,12 @@ function App() {
 
       <Snackbar
         open={openSignalAlert}
-        autoHideDuration={2500}
+        autoHideDuration={3500}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         onClose={handleCloseSignalAlert}
       >
         <Alert severity="warning" sx={{ width: '100%' }} onClose={handleCloseSignalAlert}>
-          Available upon personal request only
+          Available upon personal request only. Request by Email or Telegram.
         </Alert>
       </Snackbar>
     </ThemeProvider>
