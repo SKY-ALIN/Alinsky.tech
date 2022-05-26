@@ -71,6 +71,20 @@ const useStyles = makeStyles({
   },
   block: {
     paddingTop: "16px"
+  },
+  "@keyframes pulseAnimation": {
+    "0%": {
+      boxShadow: "0 0 0 0px rgba(255, 255, 255, 0.2)"
+    },
+    "50%": {
+      boxShadow: "0 0 0 0px rgba(255, 255, 255, 0.2)"
+    },
+    "100%": {
+      boxShadow: "0 0 0 20px rgba(255, 255, 255, 0)"
+    },
+  },
+  pulse: {
+    animation: "$pulseAnimation 5s infinite"
   }
 })
 
@@ -149,6 +163,7 @@ function App() {
               </IconButton>
 
               <Button
+                className={classes.pulse}
                 sx={{marginLeft: 'auto'}}
                 color="inherit"
                 onClick={handleExpandClick}
