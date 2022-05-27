@@ -54,7 +54,7 @@ const useStyles = makeStyles({
   root: {
     marginRight: "auto",
     marginLeft: "auto",
-    padding: "32px 0px 116px",  // 84 + 32 = 116
+    padding: "32px 0px 96px",  // 64 + 32 = 96
     display: 'flex',
     maxWidth: maxWidth,
     minHeight: '100vh',
@@ -210,7 +210,7 @@ function App() {
 
         <Paper className={classes.footer} sx={{padding: "16px 16px"}}>
           <Box sx={{maxWidth: maxWidth, marginRight: "auto", marginLeft: "auto", textAlign: 'center'}}>
-            <Typography variant="overline">Personal webpage. Copyright © 2022, Vladimir Alinsky</Typography>
+            <Typography variant="overline">Copyright © 2022, Vladimir Alinsky</Typography>
           </Box>
         </Paper>
 
