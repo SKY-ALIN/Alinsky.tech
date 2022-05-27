@@ -15,7 +15,8 @@ import {
   CardActions,
   IconButton,
   Divider,
-  ButtonGroup
+  ButtonGroup,
+  Collapse
 } from "@mui/material";
 
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -25,6 +26,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import HomeIcon from '@mui/icons-material/Home';
 
 declare module '@mui/material/styles' {
   interface Theme {
@@ -102,6 +104,21 @@ function MediaButton({text, icon, ...props}: {text: string, icon: JSX.Element, h
   )
 }
 
+function Project({title, description, github, docs}: {title: string, description: string, github?: string, docs?: string}) {
+  return (
+    <Card sx={{marginTop: "24px"}}>
+      <CardContent>
+        <Typography variant="h5" gutterBottom>{title}</Typography>
+        <Typography variant="body2" color="text.secondary">{description}</Typography>
+      </CardContent>
+      <CardActions>
+        {docs !== undefined ? <Button href={docs} size="small" startIcon={<HomeIcon />}>Homepage</Button> : null}
+        {github !== undefined ? <Button href={github} size="small" startIcon={<GitHubIcon />}>GitHub</Button> : null}
+      </CardActions>
+    </Card>
+  )
+}
+
 function App() {
   const classes = useStyles();
 
@@ -139,7 +156,7 @@ function App() {
             <CardContent>
               <Typography sx={{ mb: 1.5 }}>
                 Hello! I'm a Dreamer focusing on high-load distributed systems.
-                This is my little personal website with open-source projects and media links.
+                This is my little personal website with media links and open-source projects.
               </Typography>
               <Typography sx={{ mb: 1.5 }}>
                 You are welcome.
@@ -147,8 +164,8 @@ function App() {
 
               <Divider><Typography color="text.secondary">Social Medias</Typography></Divider>
               <Box sx={{textAlign: 'center'}}>
-                <MediaButton text="Instagram" icon={<InstagramIcon />} href="https://www.instagram.com/sky.alin/" />
                 <MediaButton text="Twitter" icon={<TwitterIcon />} href="https://twitter.com/AlinskyVladimir" />
+                <MediaButton text="Instagram" icon={<InstagramIcon />} href="https://www.instagram.com/sky.alin/" />
                 <MediaButton text="Channel" icon={<TelegramIcon />} href="https://t.me/alinsky_tech" />
               </Box>
             </CardContent>
@@ -167,10 +184,27 @@ function App() {
                 sx={{marginLeft: 'auto'}}
                 color="inherit"
                 onClick={handleExpandClick}
-                endIcon={<ExpandMoreIcon />}
-              >View Open Source</Button>
+                endIcon={<ExpandMoreIcon sx={{transform: !expanded ? 'rotate(0deg)' : 'rotate(180deg)'}} />}
+              >Open Source</Button>
             </CardActions>
           </Card>
+
+          <Collapse in={expanded}>
+            <Box>
+              <Project
+                title="Regta Framework"
+                description="Lightweight framework to create and execute periodic async and sync jobs on different processes, threads and event loops."
+                github="https://github.com/SKY-ALIN/regta"
+                docs="https://regta.Alinsky.tech"
+              />
+              <Project
+                title="telegram-text"
+                description="Python markup module for Telegram messenger. This module provides a rich list of components to build any possible markup fast and render it to specific html and MarkdownV2 formats."
+                github="https://github.com/SKY-ALIN/telegram-text"
+                docs="https://telegram-text.Alinsky.tech/"
+              />
+            </Box>
+          </Collapse>
 
         </Container>
 
